@@ -86,7 +86,7 @@ export default function TotalSpentYear(props) {
             textAlign='start'
             fontWeight='700'
             lineHeight='100%'>
-            $7088.92
+            $153189
           </Text>
           <Flex align='center' mb='20px'>
             <Text
@@ -95,12 +95,12 @@ export default function TotalSpentYear(props) {
               fontWeight='500'
               mt='4px'
               me='12px'>
-              Earnings
+              Donations
             </Text>
             <Flex align='center'>
               <Icon as={RiArrowUpSFill} color='green.500' me='2px' mt='2px' />
               <Text color='green.500' fontSize='sm' fontWeight='700'>
-                +65%
+                +22%
               </Text>
             </Flex>
           </Flex>

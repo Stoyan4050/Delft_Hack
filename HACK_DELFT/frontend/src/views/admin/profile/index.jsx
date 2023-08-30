@@ -21,10 +21,19 @@
 */
 
 // Chakra imports
-import { Box, Grid } from "@chakra-ui/react";
+import {Box, Grid, SimpleGrid} from "@chakra-ui/react";
 
 // Custom components
 import Banner from "views/admin/profile/components/Banner";
+import ComplexTable from "views/admin/default/components/ComplexTable";
+import {
+  columnsDataCheck,
+  columnsDataComplex,
+} from "views/admin/default/variables/columnsData";
+import tableDataCheck from "views/admin/default/variables/tableDataCheck.json";
+import tableDataComplex from "views/admin/default/variables/tableDataComplex.json";
+
+
 import General from "views/admin/profile/components/General";
 import Notifications from "views/admin/profile/components/Notifications";
 import Projects from "views/admin/profile/components/Projects";
@@ -33,7 +42,7 @@ import Upload from "views/admin/profile/components/Upload";
 
 // Assets
 import banner from "assets/img/auth/banner.png";
-import avatar from "assets/img/avatars/avatar4.png";
+import avatar1 from "assets/img/avatars/amazonlogo.jpg";
 import React from "react";
 
 export default function Overview() {
@@ -56,22 +65,26 @@ export default function Overview() {
             lg: "1 / 3 / 2 / 4",
           }}
           banner={banner}
-          avatar={avatar}
-          name='Aria Vetrunko'
-          job='Artist/ Singer'
-          posts='8'
+          avatar={avatar1}
+          name='Amazon'
+          job='Retailer'
+          posts='5'
           followers='57k'
-          following='180'
+          following='27'
           minH='365px'
           minW='1000px'
           pe='20px'
         />
-        <Notifications
-          gridArea={{
-            base: "3 / 1 / 4 / 2",
-            lg: "1 / 3 / 2 / 4",
-          }}
+        <ComplexTable
+          columnsData={columnsDataComplex}
+          tableData={tableDataComplex}
         />
+        {/*<Notifications*/}
+        {/*  gridArea={{*/}
+        {/*    base: "3 / 1 / 4 / 2",*/}
+        {/*    lg: "1 / 3 / 2 / 4",*/}
+        {/*  }}*/}
+        {/*/>*/}
       </Grid>
     </Box>
   );

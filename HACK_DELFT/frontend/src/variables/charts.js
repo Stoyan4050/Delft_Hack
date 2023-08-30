@@ -253,24 +253,36 @@ export const pieChartData = [63, 25, 12];
 
 export const lineChartDataTotalSpent = [
   {
-    name: "Revenue",
-    data: [1000, 2250, 3000, 6000, 7500],
+    name: "Donations",
+    data: [80000, 97000, 110000, 130000, 153000],
   },
   {
-    name: "Profit",
-    data: [200, 450, 600, 1200, 1500],
-  },
+    name: "Requested",
+    data: [100000, 107000, 130000, 150000, 165000],
+  }
+  // {
+  //   name: "Profit",
+  //   data: [200, 450, 600, 1200, 1500],
+  // },
 ];
 
 export const lineChartDataTotalSpentYear = [
+  // {
+  //   name: "Revenue",
+  //   data: [4800, 5500, 6000, 5800, 5700, 7500],
+  // },
+  // {
+  //   name: "Profit",
+  //   data: [980, 1100, 1200, 1160, 1140, 1500],
+  // },
   {
-    name: "Revenue",
-    data: [4800, 5500, 6000, 5800, 5700, 7500],
+    name: "Donations",
+    data: [80000, 97000, 110000, 130000, 153000],
   },
   {
-    name: "Profit",
-    data: [980, 1100, 1200, 1160, 1140, 1500],
-  },
+    name: "Requested",
+    data: [120000, 137000, 150000, 160000, 200000],
+  }
 ];
 
 export const lineChartOptionsTotalSpent = {
@@ -388,7 +400,7 @@ export const lineChartOptionsTotalSpentYear = {
   },
   xaxis: {
     type: "numeric",
-    categories: ["OCT", "NOV", "DEC", "JAN", "FEB", "MAR"],
+    categories: ["MAR", "APR", "MAY", "JUN", "JUL", "AUG"],
     labels: {
       style: {
         colors: "#A3AED0",

@@ -43,7 +43,7 @@ import {
 import { HSeparator } from "components/separator/Separator";
 import DefaultAuth from "layouts/auth/Default";
 // Assets
-import illustration from "assets/img/auth/auth.png";
+import illustration from "assets/img/auth/43091.jpg";
 import XRPLBanner from "components/icons/XRPLoyalties - Banner-cut.png";
 import { FcGoogle } from "react-icons/fc";
 import GemWalletIcon from "components/icons/gem1.png";
@@ -167,7 +167,7 @@ function SignIn() {
             onClick={connect}>
             <img src={GemWalletIcon} style={{width: '10%', height: '190%', display: 'block', margin: '10px'}}/>
             {/* <Icon as={GemWalletIcon} w='40px' h='40px' me='20px' /> */}
-            Sign In as an artist
+            Sign In
           </Button>
           <Flex align='center' mb='25px'>
             <HSeparator />
@@ -187,7 +187,7 @@ function SignIn() {
               onClick={handleCountClick}
               >
               <img src={GemWalletIcon} style={{width: '10%', height: '80%', display: 'block', margin: '10px'}}/>
-              Sign In as a Royalty collector
+              Sign In as a Retailer
             </Button>
           <Flex
             flexDirection='column'

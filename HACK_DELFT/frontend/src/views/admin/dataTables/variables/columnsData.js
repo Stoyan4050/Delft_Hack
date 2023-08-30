@@ -57,11 +57,11 @@ export const columnsDataColumns = [
 
 export const columnsDataComplex = [
   {
-    Header: "SONG NAME",
+    Header: "CHARITY",
     accessor: "name",
   },
   {
-    Header: "MONETIZED",
+    Header: "COMPLETED",
     accessor: "status",
   },
   {
@@ -69,7 +69,7 @@ export const columnsDataComplex = [
     accessor: "date",
   },
   {
-    Header: "LISTENERS",
+    Header: "DONATION",
     accessor: "progress",
   },
 ];

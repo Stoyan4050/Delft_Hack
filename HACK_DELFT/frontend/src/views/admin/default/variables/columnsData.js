@@ -22,7 +22,7 @@ export const columnsDataComplex = [
     accessor: "name",
   },
   {
-    Header: "MONETIZATION",
+    Header: "COMPLETED",
     accessor: "status",
   },
   {
@@ -30,7 +30,7 @@ export const columnsDataComplex = [
     accessor: "date",
   },
   {
-    Header: "LISTENERS",
+    Header: "DONATED FUNDS",
     accessor: "progress",
   },
 ];

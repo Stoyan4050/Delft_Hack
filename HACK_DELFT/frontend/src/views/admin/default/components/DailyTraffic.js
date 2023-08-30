@@ -26,10 +26,10 @@ export default function DailyTraffic(props) {
           <Flex w='100%'>
             <Text
               me='auto'
-              color='secondaryGray.600'
-              fontSize='sm'
-              fontWeight='500'>
-              Monthly Listeners
+              color='Blue'
+              fontSize='16px'
+              fontWeight='100'>
+              Monthly New Charities
             </Text>
           </Flex>
           <Flex align='end'>
@@ -38,14 +38,14 @@ export default function DailyTraffic(props) {
               fontSize='34px'
               fontWeight='700'
               lineHeight='100%'>
-              20.579K
+              55
             </Text>
             <Text
-              ms='6px'
+              ms='7px'
               color='secondaryGray.600'
               fontSize='sm'
-              fontWeight='500'>
-              Listeners
+              fontWeight='1000'>
+              Charities Last Month
             </Text>
           </Flex>
         </Flex>

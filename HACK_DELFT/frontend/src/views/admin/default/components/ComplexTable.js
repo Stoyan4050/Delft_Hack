@@ -65,7 +65,7 @@ export default function ColumnsTable(props) {
           fontSize='22px'
           fontWeight='700'
           lineHeight='100%'>
-          Latests songs
+          Open Charities
         </Text>
       </Flex>
       <Table {...getTableProps()} variant='simple' color='gray.500' mb='24px'>
@@ -103,7 +103,7 @@ export default function ColumnsTable(props) {
                         {cell.value}
                       </Text>
                     );
-                  } else if (cell.column.Header === "MONETIZATION") {
+                  } else if (cell.column.Header === "COMPLETED") {
                     data = (
                       <Flex align='center'>
                         <Icon
@@ -111,18 +111,18 @@ export default function ColumnsTable(props) {
                           h='24px'
                           me='5px'
                           color={
-                            cell.value === "Approved"
+                            cell.value === "Completed"
                               ? "green.500"
-                              : cell.value === "Disable"
+                              : cell.value === "Collecting Funds"
                               ? "red.500"
                               : cell.value === "Error"
                               ? "orange.500"
                               : null
                           }
                           as={
-                            cell.value === "Approved"
+                            cell.value === "Completed"
                               ? MdCheckCircle
-                              : cell.value === "Disable"
+                              : cell.value === "Collecting Funds"
                               ? MdCancel
                               : cell.value === "Error"
                               ? MdOutlineError
@@ -140,7 +140,7 @@ export default function ColumnsTable(props) {
                         {cell.value}
                       </Text>
                     );
-                  } else if (cell.column.Header === "LISTENERS") {
+                  } else if (cell.column.Header === "DONATED FUNDS") {
                     data = (
                       <Flex align='center'>
                         <Progress

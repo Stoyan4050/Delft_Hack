@@ -42,10 +42,10 @@ import NFT from "components/card/NFT";
 import Card from "components/card/Card.js";
 
 // Assets
-import Nft1 from "assets/img/nfts/Nft1.png";
+import Nft1 from "assets/img/nfts/Nft1.jpg";
 import Nft2 from "assets/img/nfts/Nft2.png";
 import Nft3 from "assets/img/nfts/Nft3.png";
-import Nft4 from "assets/img/nfts/Nft4.png";
+import Nft4 from "assets/img/nfts/Nft4.jpeg";
 import Nft5 from "assets/img/nfts/Nft5.png";
 import Nft6 from "assets/img/nfts/Nft6.png";
 import Avatar1 from "assets/img/avatars/avatar1.png";
@@ -101,7 +101,7 @@ export default function Marketplace() {
                 Your songs:
               </Text>
             </Flex>
-            <SimpleGrid columns={{ base: 1, md: 3 }} gap='20px'>
+            <SimpleGrid columns={{ base: 1, md: 2 }} gap='20px'>
               <NFT
                 name='I Love Paris'
                 author='Featured artists'
@@ -224,12 +224,12 @@ export default function Marketplace() {
         <Flex
           flexDirection='column'
           gridArea={{ xl: "1 / 3 / 2 / 4", "2xl": "1 / 2 / 2 / 3" }}>
-          <Card px='0px' mb='20px'>
-            <TableTopCreators
-              tableData={tableDataTopCreators}
-              columnsData={tableColumnsTopCreators}
-            />
-          </Card>
+          {/*<Card px='0px' mb='20px'>*/}
+            {/*<TableTopCreators*/}
+            {/*  tableData={tableDataTopCreators}*/}
+            {/*  columnsData={tableColumnsTopCreators}*/}
+            {/*/>*/}
+          {/*</Card>*/}
           <Card p='0px'>
             <Flex
               align={{ sm: "flex-start", lg: "center" }}
@@ -238,44 +238,44 @@ export default function Marketplace() {
               px='22px'
               py='18px'>
               <Text color={textColor} fontSize='xl' fontWeight='600'>
-                Previous events
+                Previously supported charities
               </Text>
             </Flex>
 
             <HistoryItem
-              name='Colorful Heaven'
-              author='Cafe meeting, London'
-              date='50 attendees'
-              image={Nft5}
-              price='1m ago'
-            />
-            <HistoryItem
-              name='Meet and Greet'
-              author='Picnic in Machester'
-              date='20 attendees'
+              name='Stop the fires in Greece'
+              author='Dimitrakis Papadopoulos'
+              date='02/08/2023'
               image={Nft1}
-              price='2m ago'
+              price='10K USD'
             />
             <HistoryItem
-              name='Sing and Dance'
-              author='Karaoke, Paris'
-              date='100 attendees'
+              name='Tap water for everyone in Africa'
+              author='Water for Africa'
+              date='02/03/2023'
               image={Nft2}
-              price='3m ago'
+              price='50K USD'
             />
             <HistoryItem
-              name='Wine and Pottery'
-              author='Social in Paris'
-              date='10 attendees'
-              image={Nft4}
-              price='1y ago'
-            />
-            <HistoryItem
-              name='First meeting with fans'
-              author='Fan meeting London'
-              date='10 attendees'
+              name='Helping 100 Blind people'
+              author='Foundation for Blind people'
+              date='01/01/2023'
               image={Nft3}
-              price='2y ago'
+              price='12.5K USD'
+            />
+            <HistoryItem
+              name='Earthquake in Asia'
+              author='Foundation for Asia'
+              date='22/08/2022'
+              image={Nft4}
+              price='20K USD'
+            />
+            <HistoryItem
+              name='Flooding in Croatia'
+              author='Samantha Lewis'
+              date='30/05/2021'
+              image={Nft5}
+              price='5K USD'
             />
           </Card>
         </Flex>

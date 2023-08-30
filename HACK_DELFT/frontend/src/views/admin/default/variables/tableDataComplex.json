@@ -1,26 +1,26 @@
 [
   {
-    "name":"I love Paris",
-    "status": "Approved",
-    "date": "01 Feb 2023",
-    "progress": 80.5  
+    "name":"Books for first graders",
+    "status": "Completed",
+    "date": "04 Jul 2023",
+    "progress": 100
   },
   {
-    "name":"I love London",
-    "status": "Approved",
-    "date": "14 Jan 2023",
-    "progress": 70.5  
+    "name":"Food for abandoned gods",
+    "status": "Collecting Funds",
+    "date": "1 Jun 2023",
+    "progress": 95
   },
   {
-    "name":"Pick up the trash",
-    "status": "Disable",
-    "date": "8 Sep 2022",
-    "progress": 90  
+    "name":"Tents after the earthquake",
+    "status": "Collecting Funds",
+    "date": "22 Jul 2023",
+    "progress": 45
   },
   {
-    "name":"Weekly Vibes",
-    "status": "Approved",
-    "date": "12 Jul 2021",
-    "progress": 50.5  
+    "name":"Help Refugees",
+    "status": "Collecting Funds",
+    "date": "12 May 2023",
+    "progress": 20
   }
 ]
