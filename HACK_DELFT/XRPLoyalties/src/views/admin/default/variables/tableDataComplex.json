@@ -1,0 +1,26 @@
+[
+  {
+    "name":"I love Paris",
+    "status": "Approved",
+    "date": "01 Feb 2023",
+    "progress": 80.5  
+  },
+  {
+    "name":"I love London",
+    "status": "Approved",
+    "date": "14 Jan 2023",
+    "progress": 70.5  
+  },
+  {
+    "name":"Pick up the trash",
+    "status": "Disable",
+    "date": "8 Sep 2022",
+    "progress": 90  
+  },
+  {
+    "name":"Weekly Vibes",
+    "status": "Approved",
+    "date": "12 Jul 2021",
+    "progress": 50.5  
+  }
+]
