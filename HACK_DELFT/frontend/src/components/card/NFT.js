@@ -16,14 +16,30 @@ import Card from "components/card/Card.js";
 // Assets
 import React, { useState } from "react";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Input } from "@chakra-ui/react";
 
 export default function NFT(props) {
   const { image, name, author, bidders, download, currentbid } = props;
   const [like, setLike] = useState(true);
   const textColor = useColorModeValue("navy.700", "white");
   const textColorBid = useColorModeValue("brand.500", "white");
+  const [isOpen, setIsOpen] = useState(false);
+  const [amount, setAmount] = useState('');
+  const handleOpen = () => {
+        setIsOpen(true);
+    }
+    const handleClose = () => {
+        setIsOpen(false);
+    }
+
+    const handleSubmit = () => {
+        // Handle the form submission logic here
+        // For example, send the amount to the backend
+        console.log("Amount to transact:", amount);
+        handleClose();
+    }
   return (
-      <div onClick={props.onClick} style={{ cursor: 'pointer' }}>
+      <div onClick={handleOpen} style={{ cursor: 'pointer' }}>
     <Card p='20px'>
       <Flex direction={{ base: "column" }} justify='center'>
         <Box mb={{ base: "20px", "2xl": "20px" }} position='relative'>
@@ -125,30 +141,34 @@ export default function NFT(props) {
             <Text fontWeight='700' fontSize='sm' color={textColorBid}>
               Total listeners: {currentbid}
             </Text>
-            <Link
-              href={download}
-              mt={{
-                base: "0px",
-                md: "10px",
-                lg: "0px",
-                xl: "10px",
-                "2xl": "0px",
-              }}>
-              {/* <Button
-                variant='darkBrand'
-                color='white'
-                fontSize='sm'
-                fontWeight='500'
-                borderRadius='70px'
-                px='24px'
-                py='5px'>
-                Place Bid
-              </Button> */}
-            </Link>
+
+             {/*<Button onClick={handleOpen}>View NFT</Button>*/}
+
+            <Modal isOpen={isOpen} onClose={handleClose}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>NFT Overview</ModalHeader>
+                    <ModalCloseButton />
+                    <ModalBody>
+                        <img src={image} alt={name} />
+                        <h2>{name}</h2>
+                        <p>Author: {author}</p>
+                        <p>Current Bid: {currentbid}</p>
+                        <Input placeholder="Enter amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
+                    </ModalBody>
+
+                    <ModalFooter>
+                        <Button colorScheme="blue" mr={3} onClick={handleSubmit}>
+                            Transact
+                        </Button>
+                        <Button variant="ghost" onClick={handleClose}>Close</Button>
+                    </ModalFooter>
+                </ModalContent>
+            </Modal>
           </Flex>
         </Flex>
       </Flex>
     </Card>
-          </div>
+      </div>
   );
 }

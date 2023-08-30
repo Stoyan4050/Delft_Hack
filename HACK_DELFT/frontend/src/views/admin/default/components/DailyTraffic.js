@@ -26,7 +26,7 @@ export default function DailyTraffic(props) {
           <Flex w='100%'>
             <Text
               me='auto'
-              color='Blue'
+              color='aqua'
               fontSize='16px'
               fontWeight='100'>
               Monthly New Charities

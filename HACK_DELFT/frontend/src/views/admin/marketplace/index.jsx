@@ -55,29 +55,43 @@ import Avatar4 from "assets/img/avatars/avatar4.png";
 import tableDataTopCreators from "views/admin/marketplace/variables/tableDataTopCreators.json";
 import { tableColumnsTopCreators } from "views/admin/marketplace/variables/tableColumnsTopCreators";
 import axios from 'axios';
+import { useState, useEffect } from "react";
 
 export default function Marketplace() {
   // Chakra Color Mode
   const textColor = useColorModeValue("secondaryGray.900", "white");
   const textColorBrand = useColorModeValue("brand.500", "white");
 
+  const [nfts, setNfts] = useState([]);
 
-  const handleNFTClick = (nftData) => {
-    // Define the Django backend endpoint URL
-    const  backendUrl = 'http://127.0.0.1:8000/api/nft-clicked';
+  // const handleNFTClick = (nftData) => {
+  //   // Define the Django backend endpoint URL
+  //   const  backendUrl = 'http://127.0.0.1:8000/api/nft-clicked';
+  //
+  //   console.log("NFT clicked:", nftData);
+  //
+  //   // Send a POST request with the NFT data
+  //   axios.post(backendUrl, nftData)
+  //     .then(response => {
+  //       console.log('Data sent successfully:', response.data);
+  //     })
+  //     .catch(error => {
+  //       console.error('Error sending data:', error);
+  //     });
+  // };
 
-    console.log("NFT clicked:", nftData);
-
-    // Send a POST request with the NFT data
-    axios.post(backendUrl, nftData)
-      .then(response => {
-        console.log('Data sent successfully:', response.data);
-      })
-      .catch(error => {
-        console.error('Error sending data:', error);
-      });
-  };
-
+  useEffect(() => {
+    const fetchNFTs = async () => {
+      try {
+        const response = await axios.get('http://127.0.0.1:8000/api/nfts');
+        console.log(response)// Replace with your Django API endpoint
+        setNfts(response.data);
+      } catch (error) {
+        console.error('Error fetching NFTs:', error);
+      }
+    };
+    fetchNFTs();
+  }, []);
   return (
     <Box pt={{ base: "180px", md: "80px", xl: "80px" }}>
       {/* Main Fields */}
@@ -102,123 +116,135 @@ export default function Marketplace() {
               </Text>
             </Flex>
             <SimpleGrid columns={{ base: 1, md: 2 }} gap='20px'>
-              <NFT
-                name='I Love Paris'
-                author='Featured artists'
-                bidders={[
-                  Avatar1
-                ]}
-                image={Nft1}
-                currentbid='100K'
-                download='#'
-                onClick={() => handleNFTClick({
-                  name: 'I Love Paris',
-                  author: 'Featured artists',
-                  image: Nft1,
-                  currentbid: '100K'
-        })}
-              />
-              <NFT
-                name='I Love London'
-                author='Featured artists'
-                bidders={[
-                  Avatar1,
-                  Avatar2,
-                ]}
-                image={Nft2}
-                currentbid='80K'
-                download='#'
-              />
-              <NFT
-                name='Weekly Vibes '
-                author='Featured artists'
-                bidders={[
-                  Avatar1,
-                ]}
-                image={Nft3}
-                currentbid='60K'
-                download='#'
-              />
+                {nfts.map(nft => (
+                  <NFT
+                    key={nft.id}
+                    name={nft.name}
+                    author={nft.author}
+                    bidders={nft.bidders} // You might need to process this depending on your backend data structure
+                    image={nft.image}
+                    currentbid={nft.currentbid}
+                    download={nft.download}
+                    // onClick={() => handleNFTClick(nft)}
+                  />
+                ))}
+        {/*      <NFT*/}
+        {/*        name='I Love Paris'*/}
+        {/*        author='Featured artists'*/}
+        {/*        bidders={[*/}
+        {/*          Avatar1*/}
+        {/*        ]}*/}
+        {/*        image={Nft1}*/}
+        {/*        currentbid='100K'*/}
+        {/*        download='#'*/}
+        {/*        onClick={() => handleNFTClick({*/}
+        {/*          name: 'I Love Paris',*/}
+        {/*          author: 'Featured artists',*/}
+        {/*          image: Nft1,*/}
+        {/*          currentbid: '100K'*/}
+        {/*})}*/}
+        {/*      />*/}
+        {/*      <NFT*/}
+        {/*        name='I Love London'*/}
+        {/*        author='Featured artists'*/}
+        {/*        bidders={[*/}
+        {/*          Avatar1,*/}
+        {/*          Avatar2,*/}
+        {/*        ]}*/}
+        {/*        image={Nft2}*/}
+        {/*        currentbid='80K'*/}
+        {/*        download='#'*/}
+        {/*      />*/}
+        {/*      <NFT*/}
+        {/*        name='Weekly Vibes '*/}
+        {/*        author='Featured artists'*/}
+        {/*        bidders={[*/}
+        {/*          Avatar1,*/}
+        {/*        ]}*/}
+        {/*        image={Nft3}*/}
+        {/*        currentbid='60K'*/}
+        {/*        download='#'*/}
+        {/*      />*/}
 
-            <NFT
-                name='Pick up the trash'
-                author='Featured artists'
-                bidders={[
-                  Avatar1,
-                  Avatar4,
-  
-                ]}
-                image={Nft3}
-                currentbid='110K'
-                download='#'
-              />
+        {/*    <NFT*/}
+        {/*        name='Pick up the trash'*/}
+        {/*        author='Featured artists'*/}
+        {/*        bidders={[*/}
+        {/*          Avatar1,*/}
+        {/*          Avatar4,*/}
 
-            <NFT
-                name='Colorful Heaven'
-                author='Featured artists'
-                bidders={[
-                  Avatar1,
-  
-                ]}
-                image={Nft3}
-                currentbid='50K'
-                download='#'
-              />
+        {/*        ]}*/}
+        {/*        image={Nft3}*/}
+        {/*        currentbid='110K'*/}
+        {/*        download='#'*/}
+        {/*      />*/}
 
-              <NFT
-                name='Beautiful Christmas '
-                author='Featured artists'
-                bidders={[
-                  Avatar1,
-                  Avatar3,
-                  Avatar4,
-                  Avatar1,
-                ]}
-                image={Nft3}
-                currentbid='40K'
-                download='#'
-              />
+        {/*    <NFT*/}
+        {/*        name='Colorful Heaven'*/}
+        {/*        author='Featured artists'*/}
+        {/*        bidders={[*/}
+        {/*          Avatar1,*/}
+
+        {/*        ]}*/}
+        {/*        image={Nft3}*/}
+        {/*        currentbid='50K'*/}
+        {/*        download='#'*/}
+        {/*      />*/}
+
+        {/*      <NFT*/}
+        {/*        name='Beautiful Christmas '*/}
+        {/*        author='Featured artists'*/}
+        {/*        bidders={[*/}
+        {/*          Avatar1,*/}
+        {/*          Avatar3,*/}
+        {/*          Avatar4,*/}
+        {/*          Avatar1,*/}
+        {/*        ]}*/}
+        {/*        image={Nft3}*/}
+        {/*        currentbid='40K'*/}
+        {/*        download='#'*/}
+        {/*      />*/}
             </SimpleGrid>
-            <Text
-              mt='45px'
-              mb='36px'
-              color={textColor}
-              fontSize='2xl'
-              ms='24px'
-              fontWeight='700'>
-              Featured in:
-            </Text>
-            <SimpleGrid
-              columns={{ base: 1, md: 3 }}
-              gap='20px'
-              mb={{ base: "20px", xl: "0px" }}>
-              <NFT
-                name='Living the best life'
-                author='Featured artists'
-                bidders={[
-                  Avatar4,
-                  Avatar3,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                  Avatar1,
-                ]}
-                image={Nft4}
-                currentbid='30K'
-                download='#'
-              />
-              <NFT
-                name='Colorful life'
-                author='Featured artists'
-                bidders={[
-                  Avatar2,
-                  Avatar1,
-                ]}
-                image={Nft5}
-                currentbid='80K'
-                download='#'
-              />
-            </SimpleGrid>
+            {/*<Text*/}
+            {/*  mt='45px'*/}
+            {/*  mb='36px'*/}
+            {/*  color={textColor}*/}
+            {/*  fontSize='2xl'*/}
+            {/*  ms='24px'*/}
+            {/*  fontWeight='700'>*/}
+            {/*  Featured in:*/}
+            {/*</Text>*/}
+            {/*<SimpleGrid*/}
+            {/*  columns={{ base: 1, md: 3 }}*/}
+            {/*  gap='20px'*/}
+            {/*  mb={{ base: "20px", xl: "0px" }}>*/}
+            {/*  <NFT*/}
+            {/*    name='Living the best life'*/}
+            {/*    author='Featured artists'*/}
+            {/*    bidders={[*/}
+            {/*      Avatar4,*/}
+            {/*      Avatar3,*/}
+            {/*      Avatar1,*/}
+            {/*      Avatar1,*/}
+            {/*      Avatar1,*/}
+            {/*      Avatar1,*/}
+            {/*    ]}*/}
+            {/*    image={Nft4}*/}
+            {/*    currentbid='30K'*/}
+            {/*    download='#'*/}
+            {/*  />*/}
+            {/*  <NFT*/}
+            {/*    name='Colorful life'*/}
+            {/*    author='Featured artists'*/}
+            {/*    bidders={[*/}
+            {/*      Avatar2,*/}
+            {/*      Avatar1,*/}
+            {/*    ]}*/}
+            {/*    image={Nft5}*/}
+            {/*    currentbid='80K'*/}
+            {/*    download='#'*/}
+            {/*  />*/}
+            {/*</SimpleGrid>*/}
           </Flex>
         </Flex>
         <Flex

@@ -69,7 +69,7 @@ export function SidebarResponsive(props) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = React.useRef();
 
-  const { routes } = props;
+  const { routes, userRole } = props;
   //  BRAND
 
   return (

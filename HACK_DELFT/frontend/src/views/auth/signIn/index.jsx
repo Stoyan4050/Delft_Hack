@@ -62,6 +62,7 @@ function SignIn() {
     const hasWallet = await isConnected();
     if (hasWallet) {
       const responsePublicKey = await getPublicKey();
+
       if (responsePublicKey) {
         const { address, publicKey } = responsePublicKey;
         const backendUrl = 'http://127.0.0.1:8000/api/addressPK/'; // Replace with your Django backend URL and endpoint

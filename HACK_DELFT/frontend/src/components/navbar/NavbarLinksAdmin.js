@@ -62,7 +62,7 @@ export default function HeaderLinks(props) {
 			borderRadius="30px"
 			boxShadow={shadow}>
 			<SearchBar mb={secondary ? { base: '10px', md: 'unset' } : 'unset'} me="10px" borderRadius="30px" />
-			<SidebarResponsive routes={routes} />
+			<SidebarResponsive userRole={props.userRole} routes={routes} />
 			<Menu>
 				<MenuButton p="0px">
 					<Icon mt="6px" as={MdNotificationsNone} color={navbarIcon} w="18px" h="18px" me="10px" />
@@ -101,7 +101,7 @@ export default function HeaderLinks(props) {
 					mt="22px"
 					minW={{ base: 'unset' }}
 					maxW={{ base: '360px', md: 'unset' }}>
-        			<span> <img src="XRPLoyalties Logo - Transparent.png" h='26px' w='175px'/> </span>
+        			<span> <img src="logo.png" h='26px' w='175px'/> </span>
 
 				</MenuList>
 			</Menu>
@@ -148,5 +148,6 @@ HeaderLinks.propTypes = {
 	variant: PropTypes.string,
 	fixed: PropTypes.bool,
 	secondary: PropTypes.bool,
-	onOpen: PropTypes.func
+	onOpen: PropTypes.func,
+	userRole: PropTypes.string
 };

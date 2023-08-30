@@ -8,6 +8,9 @@ from rest_framework import status
 from .models import NFT
 from django.http import JsonResponse
 from django.core.files.storage import default_storage
+from .web3 import *
+from .models import NFT_address
+from rest_framework.response import Response
 
 import json
 
@@ -82,5 +85,44 @@ def get_NFT_data(request, *args, **kwargs):
     print(description)
     print(documents)
     print(file_urls)
+
+
     # Return a JSON response
     return JsonResponse({"status": "success", "message": "Form data received successfully!"})
+
+def get_nfts(request):
+    nfts = [
+        {
+            'id': 1,
+            'name': 'NFT Name 1',
+            'author': 'Author 1',
+            'bidders': ['Bidder1', 'Bidder2'],
+            'image': 'path/to/image1.jpg',
+            'currentbid': '100K',
+            'download': '#'
+        },
+        {
+            'id': 2,
+            'name': 'NFT Name 2',
+            'author': 'Author 2',
+            'bidders': ['Bidder3'],
+            'image': 'path/to/image2.jpg',
+            'currentbid': '80K',
+            'download': '#'
+        }]
+    return JsonResponse(nfts, safe=False)
+    # list = []
+    # for i in range(10):
+    #     # image_url = "djgifjgk"
+    #     # description = "jgkfjg"
+    #     # address = "fjkgfkgkf"
+    #     # retailers="hdhfjdhfj"
+    #     data = {
+    #         "image_url": "djgifjgk",
+    #     "description": "jgkfjg",
+    #     "address": "fjkgfkgkf",
+    #     "retailers": "hdhfjdhfj"
+    #     }
+    #     list.append(data)
+
+    #return Response(list)

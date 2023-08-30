@@ -17,3 +17,6 @@ class NFT(models.Model):
 
     def __str__(self):
         return self.name
+
+class NFT_address(models.Model):
+    address = models.CharField(max_length=255)

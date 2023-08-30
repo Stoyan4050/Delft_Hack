@@ -23,7 +23,9 @@ def pay_and_submit(sender_wallet,drops,destination):
 
 
 #### NFT FUNCTIONS ####
-def mint_token(wallet,uri,taxon):
+#
+def mint_token(wallet,uri,taxon, address):
+    wallet = Wallet
     mint_wallet=wallet
     mint_tx=NFTokenMint(
         account=mint_wallet.classic_address,

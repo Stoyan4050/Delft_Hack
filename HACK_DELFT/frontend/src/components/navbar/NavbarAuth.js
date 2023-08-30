@@ -103,7 +103,7 @@ export default function AuthNavbar(props) {
       alignItems='center'
       color={mainText}>
       <Stack direction='row' spacing='12px' align='center' justify='center'>
-        <span> <img src="XRPLoyalties Logo - Transparent.png" h='26px' w='175px' /> </span>
+        <span> <img src="logo.png" h='26px' w='175px' /> </span>
       </Stack>
       <Text fontsize='sm' mt='3px'>
       </Text>
@@ -426,6 +426,7 @@ export default function AuthNavbar(props) {
               // logoText={props.logoText}
               secondary={props.secondary}
               routes={routes}
+              userRole={props.userRole}
               {...rest}
             />
           </Box>
@@ -442,7 +443,7 @@ export default function AuthNavbar(props) {
                 sm: "none",
                 lg: "flex",
               }}>
-              Buy Now
+
             </Button>
           </Link>
         </Flex>

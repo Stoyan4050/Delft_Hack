@@ -6,7 +6,7 @@ import { Flex, useColorModeValue } from "@chakra-ui/react";
 // Custom components
 import { HorizonLogo } from "components/icons/Icons";
 import { HSeparator } from "components/separator/Separator";
-import Logo from "./XRPLoyalties Logo - Transparent.png";
+import Logo from "./logo.png";
 
 
 export function SidebarBrand() {
