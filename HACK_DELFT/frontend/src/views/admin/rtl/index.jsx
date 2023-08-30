@@ -153,20 +153,20 @@ export default function UserReports() {
         columns={{ base: 1, md: 2, lg: 3, "2xl": 6 }}
         gap='20px'
         mb='20px'>
-        <MiniStatistics
-          startContent={
-            <IconBox
-              w='56px'
-              h='56px'
-              bg={boxBg}
-              icon={
-                <Icon w='32px' h='32px' as={MdBarChart} color={brandColor} />
-              }
-            />
-          }
-          name='Percentage of earnings/ royalties'
-          value='10%~'
-        />
+        {/*<MiniStatistics*/}
+        {/*  startContent={*/}
+        {/*    <IconBox*/}
+        {/*      w='56px'*/}
+        {/*      h='56px'*/}
+        {/*      bg={boxBg}*/}
+        {/*      icon={*/}
+        {/*        <Icon w='32px' h='32px' as={MdBarChart} color={brandColor} />*/}
+        {/*      }*/}
+        {/*    />*/}
+        {/*  }*/}
+        {/*  name='Percentage of earnings/ royalties'*/}
+        {/*  value='10%~'*/}
+        {/*/>*/}
         <MiniStatistics
           startContent={
             <IconBox
@@ -178,34 +178,35 @@ export default function UserReports() {
               }
             />
           }
-          name='Total earnings'
+          name='Total donations'
           value='$12,642.39'
+          growth='increase 3%'
         />
-        <MiniStatistics growth='increase 3%' name='Total royalties collected' value='$120,642.39' />
-        <MiniStatistics
-          endContent={
-            <Flex me='-16px' mt='10px'>
-              <FormLabel htmlFor='balance'>
-                <Avatar src={Usa} />
-              </FormLabel>
-              <Select
-                id='balance'
-                variant='transparent'
-                mt='5px'
-                me='0px'
-                >
-                <option value='usd'>USD</option>
-                <option value='eur'>EUR</option>
-                <option value='gbp'>GBP</option>
-                <option value='usd'>JPY</option>
-                <option value='eur'>AUD</option>
-                <option value='gba'>CAD</option>
-              </Select>
-            </Flex>
-          }
-          name='Royalties to distribute'
-          value='$18,653.45'
-        />
+        {/*<MiniStatistics growth='increase 3%' name='Total royalties collected' value='$120,642.39' />*/}
+        {/*<MiniStatistics*/}
+        {/*  endContent={*/}
+        {/*    <Flex me='-16px' mt='10px'>*/}
+        {/*      <FormLabel htmlFor='balance'>*/}
+        {/*        <Avatar src={Usa} />*/}
+        {/*      </FormLabel>*/}
+        {/*      <Select*/}
+        {/*        id='balance'*/}
+        {/*        variant='transparent'*/}
+        {/*        mt='5px'*/}
+        {/*        me='0px'*/}
+        {/*        >*/}
+        {/*        <option value='usd'>USD</option>*/}
+        {/*        <option value='eur'>EUR</option>*/}
+        {/*        <option value='gbp'>GBP</option>*/}
+        {/*        <option value='usd'>JPY</option>*/}
+        {/*        <option value='eur'>AUD</option>*/}
+        {/*        <option value='gba'>CAD</option>*/}
+        {/*      </Select>*/}
+        {/*    </Flex>*/}
+        {/*  }*/}
+        {/*  name='Royalties to distribute'*/}
+        {/*  value='$18,653.45'*/}
+        {/*/>*/}
         <MiniStatistics
           startContent={
             <IconBox
@@ -215,8 +216,8 @@ export default function UserReports() {
               icon={<Icon w='28px' h='28px' as={MdPersonAdd} color='white' />}
             />
           }
-          name='New Artists'
-          value='5'
+          name='New Donators'
+          value='120'
         />
         <MiniStatistics
           startContent={
@@ -230,7 +231,7 @@ export default function UserReports() {
             />
           }
           name='Total Projects'
-          value='10935'
+          value='22'
         />
         <MiniCalendar h='90%' w='80%' minW='80%' selectRange={false} />
 
@@ -238,7 +239,7 @@ export default function UserReports() {
       <Box  align='center'  mb='10px'>
         
       <Heading color={textColor} fontSize='36px' mb='10px' align='center'>
-            Distribute funds
+            Add new charity
         </Heading>
       <Flex
         zIndex='2'
@@ -255,7 +256,6 @@ export default function UserReports() {
             <FormLabel
               noValidate
               isRequired={true}
-              display='flex'
               ms='4px'
               fontSize='sm'
               fontWeight='500'
@@ -317,25 +317,25 @@ export default function UserReports() {
                 
           </FormControl> 
 
-          <Button
-            fontSize='sm'
-            me='0px'
-            mb='26px'
-            py='15px'
-            h='50px'
-            borderRadius='16px'
-            bg={googleBg}
-            color={googleText}
-            fontWeight='500'
-            _hover={googleHover}
-            _active={googleActive}
-            _focus={googleActive}
-            onClick={handleSubmit}>
-            Distribute funds now
-          </Button>
+          {/*<Button*/}
+          {/*  fontSize='sm'*/}
+          {/*  me='0px'*/}
+          {/*  mb='26px'*/}
+          {/*  py='15px'*/}
+          {/*  h='50px'*/}
+          {/*  borderRadius='16px'*/}
+          {/*  bg={googleBg}*/}
+          {/*  color={googleText}*/}
+          {/*  fontWeight='500'*/}
+          {/*  _hover={googleHover}*/}
+          {/*  _active={googleActive}*/}
+          {/*  _focus={googleActive}*/}
+          {/*  onClick={handleSubmit}>*/}
+          {/*  Distribute funds now*/}
+          {/*</Button>*/}
         </Flex>
         </Box>
-        <Tasks w='80%' h='90%' style={{pisition: 'relative', left: '-20%'}}/>
+        {/*<Tasks w='80%' h='90%' style={{pisition: 'relative', left: '-20%'}}/>*/}
         </SimpleGrid>
 
       </Box>
