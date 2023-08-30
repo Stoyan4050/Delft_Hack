@@ -1,12 +1,22 @@
-
 from xrpl.asyncio.clients import AsyncJsonRpcClient
-from xrpl.asyncio.account import get_account_root
 from xrpl.asyncio.transaction import submit_and_wait
 from xrpl.models.transactions import AccountSet
+from xrpl.asyncio.account import get_account_root
 from xrpl.models import Payment
 from xrpl.utils import xrp_to_drops
 
 client = AsyncJsonRpcClient("https://s.altnet.rippletest.net:51234")
+
+def mint_nft():
+    return True
+
+def burn_nft():
+    return True
+
+async def set_domain(charity_wallet, total_amount):
+    domain_tx = AccountSet(account=charity_wallet.classic_address, domain = str(total_amount))
+    response = await submit_and_wait(domain_tx, client, charity_wallet)
+    return response
 
 async def get_domain(charity_wallet):
     account_root = await get_account_root(charity_wallet.classic_address,client)
@@ -14,7 +24,7 @@ async def get_domain(charity_wallet):
     return remaining_amount
 
 async def update_domain(charity_wallet, new_tx_amount):
-    remaining_amount = await submit_and_wait(domain_tx, client, charity_wallet)
+    remaining_amount = await get_domain(charity_wallet)
     domain_tx = AccountSet(account=charity_wallet.classic_address, domain = str(remaining_amount - new_tx_amount))
     response = await submit_and_wait(domain_tx, client, charity_wallet)
     return response
@@ -34,5 +44,5 @@ async def transfer_to_charity(donor_wallet, charity_wallet, xrp_amount):
     response_payment = await submit_and_wait(payment_tx, client, donor_wallet)
     response_domain = await update_domain(charity_wallet, xrp_amount)
     if get_domain(charity_wallet) == 0:
-        zero_amount()
+        zero_amount(charity_wallet, destination_wallet, xrp_amount)
     return response_payment, response_domain
