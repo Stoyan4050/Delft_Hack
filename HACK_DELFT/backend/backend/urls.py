@@ -26,5 +26,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api/nft-clicked', views.nft_clicked, name='nft-clicked'),
-    path('api/addressPK/', views.get_address_PK, name='addressPK')
+    path('api/addressPK/', views.get_address_PK, name='addressPK'),
+    path('api/new_charity/', views.get_NFT_data, name='receive_form_data'),
 ]

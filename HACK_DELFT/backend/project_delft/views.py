@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import NFT
 from django.http import JsonResponse
+from django.core.files.storage import default_storage
+
 import json
 
 # Create your views here.
@@ -40,7 +42,7 @@ def nft_clicked(request):
 
 
 def get_address_PK(request):
-    global  ADDRESS, PUBLIC_KEY
+    global ADDRESS, PUBLIC_KEY
 
     if request.method == 'POST':
         data = json.loads(request.body.decode('utf-8'))
@@ -56,3 +58,29 @@ def get_address_PK(request):
         return JsonResponse({"message": "Data received successfully!"})
 
     return JsonResponse({"error": "Invalid request method"}, status=400)
+
+def get_NFT_data(request, *args, **kwargs):
+    # Extract the form data from the POST request
+    location = request.POST.get('location')
+    description = request.POST.get('description')
+    additional_description = request.POST.get('additional_description')
+    total_amount = request.POST.get('total_amount')
+    type_retailer = request.POST.get('type_retailer')
+    retailer_address = request.POST.get('retailer_address')
+
+    # Handle the uploaded documents
+    documents = []
+    file_urls = []
+    for key in request.FILES:
+        document = request.FILES[key]
+        documents.append(document)
+        file_name = default_storage.save(document.name, document)
+        file_url = default_storage.url(file_name)
+        file_urls.append(file_url)
+
+    print(location)
+    print(description)
+    print(documents)
+    print(file_urls)
+    # Return a JSON response
+    return JsonResponse({"status": "success", "message": "Form data received successfully!"})
