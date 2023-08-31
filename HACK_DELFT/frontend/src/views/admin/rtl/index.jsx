@@ -49,7 +49,7 @@ import MiniStatistics from "components/card/MiniStatistics";
 import IconBox from "components/icons/IconBox";
 import React from "react";
 import { HSeparator } from "components/separator/Separator";
-import { isConnected, getAddress, getNetwork, getPublicKey } from "@gemwallet/api";
+import {isConnected, getAddress, getNetwork, getPublicKey, signMessage} from "@gemwallet/api";
 
 
 import {
@@ -140,7 +140,7 @@ const handleDocumentChange = (index, event) => {
   const [total_amount, setTotalAmount] = useState("");
   const [type_retailer, setRetailer] = useState("");
   const [retailer_address, setRetailerAddress] = useState("");
-  const fieldNames = ["Location", "Description", "Additional Description", "Total Amount", "Type of Retailer", "Retailer Address"];
+  const fieldNames = ["Location", "Description", "Category", "Total Amount", "Type of Retailer", "Retailer Address"];
 
 
   const handleSubmit = async (event) => {
@@ -160,13 +160,18 @@ const handleDocumentChange = (index, event) => {
         formData.append(`document_${index + 1}`, doc);
     });
 
+    const handleConnect = () => {
+        signMessage("NFT Mint. Add new charity!").then((response) => {
+            console.log("Signed message: ", response.result?.signedMessage);
+        });
+    }
     // Send the POST request to Django
     try {
         const response = await fetch("http://127.0.0.1:8000/api/new_charity/", {
             method: "POST",
             body: formData
         });
-
+        await handleConnect()
         if (response.ok) {
             // Update the values and refresh the page
             // For example, if you want to update the value for donators for projects by one:

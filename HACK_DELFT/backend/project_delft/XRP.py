@@ -13,6 +13,8 @@ from xrpl import *
 import xrpl
 import xrpl.wallet
 from .models import NFT_address
+from xrpl.models.requests.account_info import AccountInfo
+
 
 
 ####   CONNECT TO CLIENT   ####
@@ -33,8 +35,8 @@ def generateWalletFromSeed(seed):
     return wallet
 
 ####   PAYMENT FUNCTION  ###
-def pay_and_submit(sender_wallet,drops,destination):
-    return submit_and_wait(Payment(account=sender_wallet.address, amount=xrp_to_drops(drops),destination=destination,), client, sender_wallet)
+def pay_and_submit(sender_wallet,amount,destination):
+    return submit_and_wait(Payment(account=sender_wallet.address, amount=xrp_to_drops(amount),destination=destination,), client, sender_wallet)
 
 
 #### NFT FUNCTIONS ####
@@ -43,7 +45,7 @@ def mint_token(wallet,uri,taxon=0):
     mint_wallet=wallet
     mint_tx=NFTokenMint(
         account=mint_wallet.classic_address,
-        uri=xrpl.utils.str_to_hex(uri),
+        uri=uri,
         nftoken_taxon=int(taxon),
     )
     signed_tx = xrpl.transaction.autofill_and_sign(
@@ -108,5 +110,17 @@ def burn_token(wallet,nftoken_id):
         reply=f"Submit failed: {e}"
     return reply
 
+def get_account_info(account):
+    acct_info = AccountInfo(
+        account=account,
+        ledger_index="validated",
+        strict=True,
+    )
+    response = client.request(acct_info)
+    result = response.result
+    print("response.status: ", response.status)
+    import json
+    #print(json.dumps(response.result, indent=4, sort_keys=True))
+    return response.result["account_data"]["Balance"]
 
 

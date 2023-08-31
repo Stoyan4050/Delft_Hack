@@ -26,9 +26,11 @@ PUBLIC_KEY = None
 class RoleView(viewsets.ModelViewSet):
     serializer_class = RoleSerializer
     queryset = Role.objects.all()
+
+
 #
 
-#@action(detail=False, methods=['POST'], url_path='nft-clicked')
+# @action(detail=False, methods=['POST'], url_path='nft-clicked')
 def nft_clicked(request):
     if request.method == 'POST':
         nft_data = json.loads(request.body.decode('utf-8'))
@@ -66,11 +68,30 @@ def get_address_PK(request):
 
     return JsonResponse({"error": "Invalid request method"}, status=400)
 
+def send_transaction(request):
+
+    if request.method == 'POST':
+        data = json.loads(request.body.decode('utf-8'))
+        amount = data.get('amount')
+        address = data.get("address")
+
+        address = address["issuer"]
+        print("AMOUNT: ", amount)
+        print("Address: ", address)
+
+        seed = get_donator()
+        wallet = generateWalletFromSeed(seed)
+        pay_and_submit(wallet, float(amount), address)
+
+        return JsonResponse({"message": "Data received successfully!"})
+
+    return JsonResponse({"error": "Invalid request method"}, status=400)
+
 def get_NFT_data(request, *args, **kwargs):
     # Extract the form data from the POST request
     location = request.POST.get('location')
     description = request.POST.get('description')
-    additional_description = request.POST.get('additional_description')
+    category = request.POST.get('additional_description')
     total_amount = request.POST.get('total_amount')
     type_retailer = request.POST.get('type_retailer')
     retailer_address = request.POST.get('retailer_address')
@@ -87,15 +108,35 @@ def get_NFT_data(request, *args, **kwargs):
         file_url = default_storage.url(file_name)
         file_urls.append(file_url)
 
-    combined_string = str(location) + str(description)
+    data = {
+        "location": location,
+        "description": description,
+        "category": category,
+        "total_amount": total_amount,
+        "type_retailer": type_retailer,
+        "retailer_address": retailer_address,
+    }
 
-    # print(location)
-    # print(description)
-    # print(documents)
-    # print(file_urls)
+    # Add individual document keys based on the elements in the file_urls list
+    for index, file_url in enumerate(file_urls, start=1):
+        key_name = f"document{index}"
+        data[key_name] = file_url
+
+    # Convert JSON object to string
+    json_str = json.dumps(data)
+    print(json_str)
+    # Hex-encode the JSON string
+    hex_encoded_json = hex_encode(json_str)
+
+    print(f"Hex-encoded JSON: {hex_encoded_json}")
+
+    # Calculate the length of the hex-encoded string in bytes
+    length_in_bytes = len(bytes.fromhex(hex_encoded_json))
+
+    print(f"Length in bytes: {length_in_bytes}")
 
     wallet = generateWalletFromSeed(benefit_seed)
-    uri = combined_string
+    uri = hex_encoded_json
 
     print(wallet)
     mint_token(wallet, uri)
@@ -108,22 +149,32 @@ def get_NFT_data(request, *args, **kwargs):
     # Return a JSON response
     return JsonResponse({"status": "success", "message": "Form data received successfully!"})
 
+
 def get_nfts(request):
     nfts = NFT_address.objects.all()
     list = []
+
     for nft in nfts:
         response = get_tokens_id(nft.address, nft.nftId)
-        print("BBB", response)
-        # nft_data = {
-        #     'id': 1,
-        #     'name': 'NFT Name 1',
-        #     'author': 'Author 1',
-        #     'bidders': ['Bidder1', 'Bidder2'],
-        #     'image': 'path/to/image1.jpg',
-        #     'currentbid': '100K',
-        #     'download': '#'
-        # }
-        list.append(nft_data)
+        hex_encoded_json = response['URI']
+        #print(response)
+        print(hex_encoded_json)
+        # Hex-decode the JSON string
+        json_str = hex_decode(hex_encoded_json)
+        print("JSON: ", json_str)
+        # Convert the JSON string to a Python dictionary
+        decoded_data = json.loads(json_str)
+
+        print(f"Decoded Data: {decoded_data}")
+        #print(response)
+        decoded_data["issuer"] = response['Issuer']
+        print(response['Issuer'])
+        issuer_balance = get_account_info(response['Issuer'])
+        print(issuer_balance)
+        decoded_data["amount_left"] = float(decoded_data['total_amount']) - float(issuer_balance)/1000000
+        list.append(decoded_data)
+
+
 
     return JsonResponse(list, safe=False)
     # list = []
@@ -140,4 +191,11 @@ def get_nfts(request):
     #     }
     #     list.append(data)
 
-    #return Response(list)
+    # return Response(list)
+
+
+def hex_encode(s: str) -> str:
+    return s.encode('utf-8').hex()
+
+def hex_decode(s: str) -> str:
+    return bytes.fromhex(s).decode('utf-8')

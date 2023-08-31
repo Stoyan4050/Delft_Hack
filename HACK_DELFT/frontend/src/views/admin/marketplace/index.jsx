@@ -118,13 +118,15 @@ export default function Marketplace() {
             <SimpleGrid columns={{ base: 1, md: 2 }} gap='20px'>
                 {nfts.map(nft => (
                   <NFT
-                    key={nft.id}
-                    name={nft.name}
-                    author={nft.author}
-                    bidders={nft.bidders} // You might need to process this depending on your backend data structure
-                    image={nft.image}
-                    currentbid={nft.currentbid}
-                    download={nft.download}
+                    location={nft.location}
+                    description={nft.description}
+                    category={nft.category}
+                    total_amount={nft.total_amount} // You might need to process this depending on your backend data structure
+                    type_retailer={nft.type_retailer}
+                    retailer_address={nft.retailer_address}
+                    document1={nft.document1}
+                    issuer={nft.issuer}
+                    amount_left={nft.amount_left}
                     // onClick={() => handleNFTClick(nft)}
                   />
                 ))}
