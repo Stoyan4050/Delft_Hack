@@ -206,14 +206,18 @@ export default function NFT(props) {
             <Modal isOpen={isOpen} onClose={handleClose}>
                 <ModalOverlay />
                 <ModalContent>
-                    <ModalHeader>NFT Overview</ModalHeader>
+                    <ModalHeader>Donation Overview</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        <img src={imagePath} />
-                        <h2>{description}</h2>
-                        <p>Reatailer address: {retailer_address}</p>
-                        <p>Total amount needed: {total_amount}</p>
+                        <img src="https://imgv2-2-f.scribdassets.com/img/document/443274541/original/e79a5df46b/1687461908?v=1" />
+                        <h2><b>{description}</b></h2>
+                        <p>Retailer: {type_retailer}</p>
+                        <p>Retailer address: {retailer_address}</p>
+                        <p><b>Total amount needed: {amount_left}</b></p>
+                        <p>Charity address: {issuer}</p>
+
                         <Input placeholder="Enter amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
+
                     </ModalBody>
 
                     <ModalFooter>

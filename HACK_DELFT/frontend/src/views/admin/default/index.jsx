@@ -203,12 +203,12 @@ export default function UserReports() {
         <Tbody>
           {/* Example rows, you can map through your data to generate these */}
           <Tr>
-            <Td>Retailer 1</Td>
-            <Td>Address 1</Td>
+            <Td>Amazon</Td>
+            <Td>rB2fLhDLZXyaM5T58mVz89d4KnuMiwpm6Q</Td>
           </Tr>
           <Tr>
-            <Td>Retailer 2</Td>
-            <Td>Address 2</Td>
+            <Td>Hospital 101</Td>
+            <Td>rakpXz6bFwTEyFD6w3mQmu1bWDz51xNHyQ</Td>
           </Tr>
           {/* ... add more rows as needed */}
         </Tbody>

@@ -96,7 +96,7 @@ def get_NFT_data(request, *args, **kwargs):
     type_retailer = request.POST.get('type_retailer')
     retailer_address = request.POST.get('retailer_address')
 
-    benefit_seed = get_benefit()
+    benefit_seed = burn_benefit()
 
     # Handle the uploaded documents
     documents = []
@@ -171,8 +171,23 @@ def get_nfts(request):
         print(response['Issuer'])
         issuer_balance = get_account_info(response['Issuer'])
         print(issuer_balance)
-        decoded_data["amount_left"] = float(decoded_data['total_amount']) - float(issuer_balance)/1000000
-        list.append(decoded_data)
+        left_amount = float(decoded_data['total_amount']) - float(issuer_balance)/1000000
+
+
+        decoded_data["amount_left"] = left_amount
+
+        if left_amount <= 0:
+            wallet = generateWalletFromSeed(burn_benefit())
+            burn_token(wallet, nft.nftId)
+            nft.delete()
+            wallet_amazon = generateWalletFromSeed(get_retailer1())
+            pay_and_submit(wallet, float(issuer_balance)-20, wallet_amazon.address)
+            #book_to_delete = NFT_address.objects.get(nftId=)
+            # Delete the book
+            # book_to_delete.delete()
+            # remove(nft.address, nft.nftId)
+        else:
+            list.append(decoded_data)
 
 
 
