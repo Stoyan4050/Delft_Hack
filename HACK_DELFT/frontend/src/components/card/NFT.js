@@ -18,6 +18,8 @@ import React, { useState } from "react";
 import { IoHeart, IoHeartOutline } from "react-icons/io5";
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Input } from "@chakra-ui/react";
 import { submitTransaction } from "@gemwallet/api";
+import { isInstalled, signMessage } from "@gemwallet/api";
+
 
 export default function NFT(props) {
   const { image, name, author, bidders, download, currentbid } = props;
@@ -26,6 +28,13 @@ export default function NFT(props) {
   const textColorBid = useColorModeValue("brand.500", "white");
   const [isOpen, setIsOpen] = useState(false);
   const [amount, setAmount] = useState('');
+
+  const handleConnect = () => {
+        signMessage("The message I want to get signed").then((response) => {
+          console.log("Signed message: ", response.result?.signedMessage);
+        });
+
+  };
 
   const handleOpen = () => {
         setIsOpen(true);
@@ -38,6 +47,7 @@ export default function NFT(props) {
         // Handle the form submission logic here
         // For example, send the amount to the backend
         console.log("Amount to transact:", amount);
+        handleConnect();
         handleClose();
     }
   return (

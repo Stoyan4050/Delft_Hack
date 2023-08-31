@@ -11,11 +11,26 @@ from xrpl.models.transactions import NFTokenMint
 import json
 from xrpl import *
 import xrpl
+import xrpl.wallet
+from .models import NFT_address
+
 
 ####   CONNECT TO CLIENT   ####
 JSON_RPC_URL = "https://s.altnet.rippletest.net:51234/"
 client = JsonRpcClient(JSON_RPC_URL)
 
+# This file contains the functions which will be used for the Ripple hackathon
+# Define the network clientfrom xrpl.clients
+
+
+# client = AsyncJsonRpcClient("https://s.altnet.rippletest.net:51234")
+# JSON_RPC_URL = "https://s.altnet.rippletest.net:51234/"
+
+# Generate a charity or user wallet starting from a seed (private key)
+
+def generateWalletFromSeed(seed):
+    wallet = xrpl.wallet.Wallet.from_seed(seed)
+    return wallet
 
 ####   PAYMENT FUNCTION  ###
 def pay_and_submit(sender_wallet,drops,destination):
@@ -24,8 +39,7 @@ def pay_and_submit(sender_wallet,drops,destination):
 
 #### NFT FUNCTIONS ####
 #
-def mint_token(wallet,uri,taxon, address):
-    wallet = Wallet
+def mint_token(wallet,uri,taxon=0):
     mint_wallet=wallet
     mint_tx=NFTokenMint(
         account=mint_wallet.classic_address,
@@ -41,6 +55,15 @@ def mint_token(wallet,uri,taxon, address):
     try:
         response=xrpl.transaction.submit_and_wait(signed_tx,client,mint_wallet)
         reply=response.result
+        print("Account: ", reply['Account'])
+        print("Nft minted id: ", reply['meta']['nftoken_id'])
+
+        nft_address = NFT_address(
+            address=reply['Account'],
+            nftId=reply['meta']['nftoken_id']
+        )
+        nft_address.save()
+
     except xrpl.transaction.XRPLReliableSubmissionException as e:
         reply=f"Submit failed: {e}"
     return reply
@@ -52,6 +75,21 @@ def get_tokens(account):
     )
     response=client.request(acct_nfts)
     return response.result
+
+def get_tokens_id(account, id):
+    """get_tokens"""
+    acct_nfts=AccountNFTs(
+        account=account
+    )
+    response=client.request(acct_nfts)
+    #print(response)
+    nftokens = response.result['account_nfts']
+    #print(nftokens)
+    for nftoken in nftokens:
+        if nftoken['NFTokenID'] == id:
+            return nftoken
+    return None
+
 
 def burn_token(wallet,nftoken_id):
     """burn_token"""

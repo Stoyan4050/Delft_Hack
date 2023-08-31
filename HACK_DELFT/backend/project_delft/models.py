@@ -20,3 +20,4 @@ class NFT(models.Model):
 
 class NFT_address(models.Model):
     address = models.CharField(max_length=255)
+    nftId = models.CharField(max_length=255)
