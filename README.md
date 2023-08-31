@@ -68,8 +68,8 @@ XRPLCharity is an innovative platform for transparent charitable donations, buil
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/XRPLCharity.git
-    cd XRPLCharity
+    git clone https://github.com/Stoyan4050/Delft_Hack.git
+    cd Delft_Hack
     ```
 
 2. Install backend dependencies:
