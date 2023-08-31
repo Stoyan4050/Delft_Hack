@@ -1,6 +1,6 @@
 # XRPLCharity: A Transparent Charity Platform on XRPL
 
-![XRPLCharity Logo](path/to/logo.png)
+![XRPLCharity Logo](logo.png)
 
 ## Table of Contents
 
