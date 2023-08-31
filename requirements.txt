@@ -178,8 +178,6 @@ tqdm==4.65.0
 traitlets==5.9.0
 typing_extensions==4.4.0
 tzdata==2023.2
-# Editable install with no version control (UNKNOWN==0.0.0)
--e d:\ucl\y4\df\digital-finance-practical
 uri-template==1.2.0
 urllib3==1.26.12
 wcwidth==0.2.5
