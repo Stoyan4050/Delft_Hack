@@ -43,7 +43,7 @@ XRPLCharity is an innovative platform for transparent charitable donations, buil
 - [React](https://reactjs.org/)
 - [XRPL](https://xrpl.org/)
 - [xrpl-py](https://github.com/XRPLF/xrpl-py)
-- [Gem Wallet](https://www.gem.co/)
+- [Gem Wallet](https://gemwallet.app/)
 
 ## How it Works
 
@@ -82,7 +82,7 @@ XRPLCharity is an innovative platform for transparent charitable donations, buil
 
     ```bash
     cd frontend
-    yarn install
+    npm install
     ```
 
 4. Run migrations:
@@ -101,12 +101,12 @@ XRPLCharity is an innovative platform for transparent charitable donations, buil
 
     ```bash
     cd frontend
-    yarn start
+    npm start
     ```
 
 ## Usage
 
-Visit `http://localhost:8000` for the backend and `http://localhost:3000` for the frontend.
+Visit `http://localhost:3000` for the frontend or `http://localhost:8000` for the backend.
 
 ## Acknowledgments
 
