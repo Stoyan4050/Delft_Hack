@@ -112,7 +112,7 @@ export default function Marketplace() {
               direction={{ base: "column", md: "row" }}
               align={{ base: "start", md: "center" }}>
               <Text color={textColor} fontSize='2xl' ms='24px' fontWeight='700'>
-                Your songs:
+                Explore charities:
               </Text>
             </Flex>
             <SimpleGrid columns={{ base: 1, md: 2 }} gap='20px'>
