@@ -21,7 +21,7 @@ import json
 
 ADDRESS = None
 PUBLIC_KEY = None
-
+no = []
 
 class RoleView(viewsets.ModelViewSet):
     serializer_class = RoleSerializer
@@ -151,6 +151,7 @@ def get_NFT_data(request, *args, **kwargs):
 
 
 def get_nfts(request):
+    global no
     nfts = NFT_address.objects.all()
     list = []
 
@@ -173,21 +174,22 @@ def get_nfts(request):
         print(issuer_balance)
         left_amount = float(decoded_data['total_amount']) - float(issuer_balance)/1000000
 
-
         decoded_data["amount_left"] = left_amount
 
-        if left_amount <= 0:
-            wallet = generateWalletFromSeed(burn_benefit())
-            burn_token(wallet, nft.nftId)
-            nft.delete()
-            wallet_amazon = generateWalletFromSeed(get_retailer1())
-            pay_and_submit(wallet, float(issuer_balance)-20, wallet_amazon.address)
-            #book_to_delete = NFT_address.objects.get(nftId=)
-            # Delete the book
-            # book_to_delete.delete()
-            # remove(nft.address, nft.nftId)
-        else:
-            list.append(decoded_data)
+        # if left_amount <= 10 and nft.nftId not in no:
+        #     wallet = generateWalletFromSeed(burn_benefit())
+        #     burn_token(wallet, nft.nftId)
+        #
+        #     wallet_amazon = generateWalletFromSeed(get_retailer1())
+        #
+        #     #pay_and_submit(wallet, (float(issuer_balance)-(11*1000000)), wallet_amazon.address)
+        #     # Delete the book
+        #     #nft.delete()
+        #     no.append(nft.nftId)
+        #     # remove(nft.address, nft.nftId)
+        #
+        # else:
+        list.append(decoded_data)
 
 
 
